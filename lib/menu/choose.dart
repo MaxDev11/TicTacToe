@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../colors.dart';
 import 'play.dart';
-import 'menu.dart';
 
 class Choose extends StatelessWidget {
   @override
