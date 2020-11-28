@@ -19,15 +19,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         title: 'TicTacToe',
-//         debugShowCheckedModeBanner: false,
-//         home: Scaffold(
-//           backgroundColor: charlestonGreen,
-//         ));
-//   }
-// }
