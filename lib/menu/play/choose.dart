@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../colors.dart';
-import 'play.dart';
+import '../../colors.dart';
+import 'difficulty.dart';
 
 class Choose extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class Choose extends StatelessWidget {
           child: AppBar(
             title: Text('Choose',
                 style: TextStyle(
-                  fontSize: 38,
+                  fontSize: 36,
                   fontWeight: FontWeight.bold,
                 )),
             centerTitle: true,
@@ -28,7 +28,7 @@ class Choose extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                   color: davysGrey,
-                  border: Border.all(color: Colors.black87, width: 5)),
+                  border: Border.all(color: Colors.white70, width: 5)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,13 +43,13 @@ class Choose extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Play()),
+                          MaterialPageRoute(builder: (context) => Difficulty()),
                         );
                       },
                       child: Text('X',
                           style: TextStyle(
                               color: davysGrey,
-                              fontSize: 78,
+                              fontSize: 74,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -69,13 +69,13 @@ class Choose extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Play()),
+                          MaterialPageRoute(builder: (context) => Difficulty()),
                         );
                       },
                       child: Text('0',
                           style: TextStyle(
                               color: davysGrey,
-                              fontSize: 78,
+                              fontSize: 74,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),

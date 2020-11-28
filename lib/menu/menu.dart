@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/menu/choose.dart';
+import 'package:tictactoe/menu/Play/choose.dart';
 import '../colors.dart';
 
 class MenuPage extends StatelessWidget {
