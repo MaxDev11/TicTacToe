@@ -74,59 +74,6 @@ Widget settingsBtn(BuildContext context) {
       ));
 }
 
-//Difficulty section
-Widget easyBtn(BuildContext context) {
-  return FlatButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PlayPage(
-            difficulty: GameDifficulty.Easy,
-          ),
-        ),
-      );
-    },
-    child: Text('Easy',
-        style: TextStyle(
-            color: Colors.white38, fontSize: 30, fontWeight: FontWeight.bold)),
-  );
-}
-
-Widget mediumBtn(BuildContext context) {
-  return FlatButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => PlayPage(
-                  difficulty: GameDifficulty.Medium,
-                )),
-      );
-    },
-    child: Text('Medium',
-        style: TextStyle(
-            color: Colors.white70, fontSize: 30, fontWeight: FontWeight.bold)),
-  );
-}
-
-Widget hardBtn(BuildContext context) {
-  return FlatButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => PlayPage(
-                  difficulty: GameDifficulty.Hard,
-                )),
-      );
-    },
-    child: Text('Hard',
-        style: TextStyle(
-            color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold)),
-  );
-}
-
 //Choose Section
 Widget chxBtn(BuildContext context) {
   return Container(
@@ -136,7 +83,7 @@ Widget chxBtn(BuildContext context) {
     child: FlatButton(
       color: cultured2,
       onPressed: () {
-        Navigator.pushNamed(context, difficultyRoute);
+        Navigator.pushNamed(context, playRoute);
       },
       child: Text('X',
           style: TextStyle(
@@ -153,7 +100,7 @@ Widget choBtn(BuildContext context) {
     child: FlatButton(
       color: cultured2,
       onPressed: () {
-        Navigator.pushNamed(context, difficultyRoute);
+        Navigator.pushNamed(context, playRoute);
       },
       child: Text('0',
           style: TextStyle(
