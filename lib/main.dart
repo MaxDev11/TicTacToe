@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'start.dart';
-import 'colors.dart';
+import 'package:tictactoe/app/entities/colors.dart';
+import 'package:tictactoe/app/entities/route.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
         primaryColor: charlestonGreen,
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      onGenerateRoute: generateRoute,
+      initialRoute: splashRoute,
     );
   }
 }

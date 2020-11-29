@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/menu/menu.dart';
-
-import '../../colors.dart';
-import 'ai/ai.dart';
-import 'sections/board.dart';
-import 'sections/avatars.dart';
-import 'sections/scoreBoard/scoreBoard.dart';
+import 'package:tictactoe/app/entities/colors.dart';
+import 'package:tictactoe/app/entities/route.dart';
+import 'package:tictactoe/app/entities/widgets.dart';
+import 'package:tictactoe/app/menu/play/ai/ai.dart';
+import 'package:tictactoe/app/menu/play/sections/board.dart';
+import 'package:tictactoe/app/menu/play/sections/scoreBoard/scoreBoard.dart';
 
 class PlayPage extends StatefulWidget {
   final GameDifficulty difficulty;
@@ -31,12 +30,7 @@ class _PlayPageState extends State<PlayPage> {
             backgroundColor: davysGrey,
             leading: IconButton(
               icon: Icon(Icons.arrow_back, size: 35),
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MenuPage()),
-                )
-              },
+              onPressed: () => {Navigator.pushNamed(context, menuRoute)},
             ),
           )),
       backgroundColor: charlestonGreen,

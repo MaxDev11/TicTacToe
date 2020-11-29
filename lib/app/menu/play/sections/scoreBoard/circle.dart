@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/colors.dart';
+import 'package:tictactoe/app/entities/colors.dart';
 
 Widget get circle => Center(
         child: FlatButton(
