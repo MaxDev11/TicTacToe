@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/route.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
+import 'package:tictactoe/app/menu/play/sections/avatars.dart';
 import 'package:tictactoe/app/menu/play/sections/board.dart';
-import 'package:tictactoe/app/menu/play/sections/scoreBoard/scoreBoard.dart';
+import 'package:tictactoe/app/menu/play/sections/scoreBoard.dart';
 
 class PlayPage extends StatefulWidget {
   @override
@@ -11,6 +12,20 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPageState extends State<PlayPage> {
+  List<String> displayExOh = [
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ];
+
+  bool choice; // O
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

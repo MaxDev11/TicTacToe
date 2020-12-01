@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/app/entities/colors.dart';
 
-int _xWins = 0;
-int _oWins = 0;
-int _draws = 0;
+int xWins = 0;
+int oWins = 0;
+int draws = 0;
 
 Widget get scoreBoard => Column(children: [
       Container(
@@ -24,7 +25,7 @@ Widget get playerScore => Column(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$_xWins',
+        Text('$xWins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -39,7 +40,7 @@ Widget get drawScore => Column(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$_draws',
+        Text('$draws',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -54,7 +55,7 @@ Widget get botScore => Column(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$_oWins',
+        Text('$oWins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
+import '../play.dart';
 
 class Choose extends StatelessWidget {
   @override

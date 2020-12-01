@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/menu/menu.dart';
-import 'package:tictactoe/app/menu/play/sections/choose.dart';
 import 'package:tictactoe/app/menu/play/play.dart';
+import 'package:tictactoe/app/menu/play/sections/choose.dart';
 import 'package:tictactoe/app/start.dart';
 
 const String splashRoute = '/',
