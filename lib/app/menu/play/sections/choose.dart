@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
-import '../play.dart';
 
 class Choose extends StatelessWidget {
   @override
@@ -23,6 +22,7 @@ class Choose extends StatelessWidget {
               onPressed: () => {Navigator.pop(context)},
             ),
           )),
+      // ignore: missing_required_param
       body: Center(
           child: Container(
               margin: EdgeInsets.only(left: 30, right: 30),
@@ -34,14 +34,9 @@ class Choose extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  chxBtn(context),
-                  Text('Pick',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  choBtn(context),
+                  chxBtn,
+                  titleChoose,
+                  choBtn,
                 ],
               ))),
     );

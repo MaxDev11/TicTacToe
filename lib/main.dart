@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/route.dart';
+import 'package:tictactoe/app/entities/classes.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => Choice()),
+    ], child: MyApp()));
 
 class MyApp extends StatelessWidget {
   @override

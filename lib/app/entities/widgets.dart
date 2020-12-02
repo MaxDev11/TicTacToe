@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tictactoe/app/entities/colors.dart';
-import 'package:tictactoe/app/menu/play/ai/ai.dart';
-import 'package:tictactoe/app/menu/play/play.dart';
+import 'package:tictactoe/app/entities/classes.dart';
 import 'package:tictactoe/app/entities/route.dart';
 
 //Splash Screen
@@ -75,50 +75,63 @@ Widget settingsBtn(BuildContext context) {
 }
 
 //Choose Section
-Widget chxBtn(BuildContext context) {
-  return Container(
+Widget get titleChoose => Text('Pick',
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+    ));
+
+Widget get chxBtn => Container(
     margin: EdgeInsets.only(left: 15),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)), color: cultured2),
-    child: FlatButton(
-      color: cultured2,
-      onPressed: () {
-        Navigator.pushNamed(context, playRoute);
+    child: Consumer<Choice>(
+      builder: (context, choice, child) {
+        return FlatButton(
+          color: cultured2,
+          onPressed: () {
+            Navigator.pushNamed(context, playRoute);
+            choice.xChoice();
+          },
+          child: Text('X',
+              style: TextStyle(
+                  color: davysGrey, fontSize: 74, fontWeight: FontWeight.bold)),
+        );
       },
-      child: Text('X',
-          style: TextStyle(
-              color: davysGrey, fontSize: 74, fontWeight: FontWeight.bold)),
-    ),
-  );
-}
+    ));
 
-Widget choBtn(BuildContext context) {
-  return Container(
+Widget get choBtn => Container(
     margin: EdgeInsets.only(right: 15),
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(13)), color: cultured2),
-    child: FlatButton(
-      color: cultured2,
-      onPressed: () {
-        Navigator.pushNamed(context, playRoute);
+        borderRadius: BorderRadius.all(Radius.circular(15)), color: cultured2),
+    child: Consumer<Choice>(
+      builder: (context, choice, child) {
+        return FlatButton(
+          color: cultured2,
+          onPressed: () {
+            Navigator.pushNamed(context, playRoute);
+            choice.oChoice();
+          },
+          child: Text('O',
+              style: TextStyle(
+                  color: davysGrey, fontSize: 74, fontWeight: FontWeight.bold)),
+        );
       },
-      child: Text('0',
-          style: TextStyle(
-              color: davysGrey, fontSize: 74, fontWeight: FontWeight.bold)),
-    ),
-  );
-}
+    ));
 
 //Play section
-Widget get boardSquare => Container(
-    width: 90,
-    height: 100,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)), color: cultured2),
-    child: Center(
-        child: FlatButton(
-      onPressed: () {},
-      child: Text("X",
-          style: TextStyle(
-              color: davysGrey, fontSize: 78, fontWeight: FontWeight.bold)),
-    )));
+// Widget get boardSquare => Container(
+//     width: 90,
+//     height: 100,
+//     decoration: BoxDecoration(
+//         borderRadius: BorderRadius.all(Radius.circular(5)), color: cultured2),
+//     child: Center(
+//         child: GestureDetector(
+//       onTap: () {
+//         _tapped(index);
+//       },
+//       child: Text("X",
+//           style: TextStyle(
+//               color: davysGrey, fontSize: 78, fontWeight: FontWeight.bold)),
+//     )));

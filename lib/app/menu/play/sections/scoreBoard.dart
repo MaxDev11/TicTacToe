@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/app/entities/colors.dart';
 
-int xWins = 0;
-int oWins = 0;
-int draws = 0;
-
-Widget get scoreBoard => Column(children: [
+Widget scoreBoard(int pScore, int bScore, int draws) => Column(children: [
       Container(
           margin: EdgeInsets.only(top: 10, left: 63, right: 60),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              playerScore,
-              drawScore,
-              botScore,
+              playerScore(pScore),
+              drawScore(draws),
+              botScore(bScore),
             ],
           )),
     ]);
 
-Widget get playerScore => Column(
+Widget playerScore(int pScore) => Column(
       children: <Widget>[
         Text('Wins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$xWins',
+        Text('$pScore',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -33,7 +28,7 @@ Widget get playerScore => Column(
       ],
     );
 
-Widget get drawScore => Column(
+Widget drawScore(int draws) => Column(
       children: <Widget>[
         Text('Draws',
             style: TextStyle(
@@ -48,14 +43,14 @@ Widget get drawScore => Column(
       ],
     );
 
-Widget get botScore => Column(
+Widget botScore(bScore) => Column(
       children: <Widget>[
         Text('Wins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$oWins',
+        Text('$bScore',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
