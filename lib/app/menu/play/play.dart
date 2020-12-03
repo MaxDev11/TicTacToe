@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/route.dart';
-import 'package:tictactoe/app/entities/classes.dart';
+import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/app/menu/play/sections/avatars.dart';
+import 'package:tictactoe/app/menu/play/sections/board.dart';
 import 'package:tictactoe/app/menu/play/sections/scoreBoard.dart';
+import 'package:tictactoe/main.dart';
 
 class PlayPage extends StatefulWidget {
   @override
@@ -24,8 +25,7 @@ class _PlayPageState extends State<PlayPage> {
     '',
   ];
 
-  bool turn() => Provider.of<Choice>(context, listen: false).choice;
-  bool opTurn = true; // O
+  bool opTurn = getChoice.choice; // O
   int pScore = 0;
   int bScore = 0;
   int draws = 0;
@@ -55,58 +55,32 @@ class _PlayPageState extends State<PlayPage> {
           children: <Widget>[
             avatars,
             scoreBoard(pScore, bScore, draws),
-            board,
+            board(tapped, displayXO),
           ],
         ),
       ),
     );
   }
 
-  Widget get board => Expanded(
-      child: GridView.builder(
-          padding: EdgeInsets.only(top: 30, left: 42, right: 42),
-          itemCount: 9,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 2.0,
-            crossAxisSpacing: 2.0,
-            childAspectRatio: 0.9,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-                _tapped(index);
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: cultured2),
-                  child: Center(
-                    child: Text(displayXO[index],
-                        style: TextStyle(
-                            color: davysGrey,
-                            fontSize: 72,
-                            fontWeight: FontWeight.bold)),
-                  )),
-            );
-          }));
-
-  void _tapped(int index) {
+  // MAIN FUNCTIONS
+  //Tap on the board
+  void tapped(int index) {
     setState(() {
-      if (turn() && (displayXO[index] == '')) {
+      if (opTurn && (displayXO[index] == '')) {
         displayXO[index] = 'O';
         filledBoxes += 1;
-      } else if (!turn() && (displayXO[index] == '')) {
+      } else if (!opTurn && (displayXO[index] == '')) {
         displayXO[index] = 'X';
         filledBoxes += 1;
       }
 
-      //turn() = !turn();
+      opTurn = !opTurn;
 
       _checkWinner();
     });
   }
 
+  // Check the winner
   void _checkWinner() {
     // checks 1st row
     if (displayXO[0] == displayXO[1] &&
@@ -114,6 +88,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[0] != '') {
       _showWinDialog(displayXO[0]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks 2nd row
@@ -122,6 +97,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[3] != '') {
       _showWinDialog(displayXO[3]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks 3rd row
@@ -130,6 +106,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[6] != '') {
       _showWinDialog(displayXO[6]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks 1st column
@@ -138,6 +115,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[0] != '') {
       _showWinDialog(displayXO[0]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks 2nd column
@@ -146,6 +124,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[1] != '') {
       _showWinDialog(displayXO[1]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks 3rd column
@@ -154,6 +133,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[2] != '') {
       _showWinDialog(displayXO[2]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
     // checks diagonal
@@ -162,9 +142,10 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[6] != '') {
       _showWinDialog(displayXO[6]);
       _clearBoard();
+      opTurn = getChoice.choice;
     }
 
-    // checks diagonal
+    // checks diagonal with Draw
     if (displayXO[0] == displayXO[4] &&
         displayXO[0] == displayXO[8] &&
         displayXO[0] != '') {
@@ -173,76 +154,28 @@ class _PlayPageState extends State<PlayPage> {
     } else if (filledBoxes == 9) {
       _clearBoard();
       _showDrawDialog();
+      opTurn = getChoice.choice;
     }
   }
 
+  // Show Draw Dialog
   void _showDrawDialog() {
     showDialog(
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'DRAW',
-              style: TextStyle(color: Colors.white),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text(
-                  'Menu',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, menuRoute);
-                },
-              ),
-              FlatButton(
-                child: Text(
-                  'Again?',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-            backgroundColor: davysGrey,
-          );
+          return alertDialog(context, "DR", "AW");
         });
     draws += 1;
   }
 
+  // Show Win Dialog
   void _showWinDialog(String winner) {
     showDialog(
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'WINNER IS: ' + winner,
-              style: TextStyle(color: Colors.white),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text(
-                  'Menu',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, menuRoute);
-                },
-              ),
-              FlatButton(
-                  child: Text(
-                    'Again?',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-            ],
-            backgroundColor: davysGrey,
-          );
+          return alertDialog(context, "WINNER IS: ", winner);
         });
 
     if (winner == 'O') {
@@ -252,13 +185,13 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
+  // Clear the board
   void _clearBoard() {
     setState(() {
       for (int i = 0; i < 9; i++) {
         displayXO[i] = '';
       }
     });
-
     filledBoxes = 0;
   }
 }

@@ -1,19 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:rxdart/rxdart.dart';
 
-class Choice with ChangeNotifier {
-  bool _choice = true; // O
+class AI {}
+
+class Choice {
+  final BehaviorSubject<bool> _choice = BehaviorSubject.seeded(true);
+
+  Stream<bool> get choice$ => _choice.stream;
+  bool get choice => _choice.value;
 
   void oChoice() {
-    _choice = true; // O
-    notifyListeners();
+    _choice.add(true);
   }
 
   void xChoice() {
-    _choice = false; // X
-    notifyListeners();
+    _choice.add(false);
   }
-
-  bool get choice => _choice;
 }
-
-class AI {}
