@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget scoreBoard(int pScore, int bScore, int draws) => Column(children: [
+Widget scoreBoard(int pScore, int spScore, int draws) => Column(children: [
       Container(
-          margin: EdgeInsets.only(top: 10, left: 63, right: 60),
+          margin: EdgeInsets.only(top: 10, left: 63, right: 62),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               playerScore(pScore),
               drawScore(draws),
-              botScore(bScore),
+              secondPlayerScore(spScore),
             ],
           )),
     ]);
@@ -43,14 +43,14 @@ Widget drawScore(int draws) => Column(
       ],
     );
 
-Widget botScore(bScore) => Column(
+Widget secondPlayerScore(spScore) => Column(
       children: <Widget>[
         Text('Wins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold)),
-        Text('$bScore',
+        Text('$spScore',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,

@@ -30,7 +30,7 @@ Widget playBtn(BuildContext context) {
   return Container(
       width: 190,
       height: 42,
-      margin: EdgeInsets.only(top: 55),
+      margin: EdgeInsets.only(top: 50),
       child: FlatButton(
         onPressed: () {
           Navigator.pushNamed(context, chooseRoute);
@@ -39,23 +39,6 @@ Widget playBtn(BuildContext context) {
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Text('Play',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-      ));
-}
-
-Widget multiplayerBtn(BuildContext context) {
-  return Container(
-      width: 190,
-      height: 42,
-      margin: EdgeInsets.only(top: 40),
-      child: FlatButton(
-        onPressed: () {
-          Navigator.pushNamed(context, multiplayerRoute);
-        },
-        color: davysGrey,
-        textColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Text('Multiplayer',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -71,6 +54,21 @@ Widget settingsBtn(BuildContext context) {
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Text('Settings',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+      ));
+}
+
+Widget themesBtn(BuildContext context) {
+  return Container(
+      width: 190,
+      height: 42,
+      margin: EdgeInsets.only(top: 40),
+      child: FlatButton(
+        onPressed: () => {},
+        color: davysGrey,
+        textColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Text('Themes',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -114,7 +112,7 @@ Widget get choBtn => Container(
           color: cultured2,
           onPressed: () {
             Navigator.pushNamed(context, playRoute);
-            getChoice.xChoice();
+            getChoice.oChoice();
           },
           child: Text('O',
               style: TextStyle(

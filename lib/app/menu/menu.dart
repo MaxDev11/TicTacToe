@@ -17,8 +17,8 @@ class _MenuPageState extends State<MenuPage> {
           children: <Widget>[
             menuTitle,
             playBtn(context),
-            multiplayerBtn(context),
             settingsBtn(context),
+            themesBtn(context),
             // Container(
             //     margin: EdgeInsets.only(top: 50),
             //     child: DropdownButton(

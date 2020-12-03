@@ -1,12 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/route.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
-import 'package:tictactoe/app/menu/sections/avatars.dart';
-import 'package:tictactoe/app/menu/sections/board.dart';
-import 'package:tictactoe/app/menu/sections/scoreBoard.dart';
+import 'package:tictactoe/app/menu/play/sections/avatars.dart';
+import 'package:tictactoe/app/menu/play/sections/board.dart';
+import 'package:tictactoe/app/menu/play/sections/names.dart';
+import 'package:tictactoe/app/menu/play/sections/scoreBoard.dart';
 import 'package:tictactoe/main.dart';
 
 class PlayPage extends StatefulWidget {
@@ -27,10 +26,9 @@ class _PlayPageState extends State<PlayPage> {
     '',
   ];
 
-  bool playerTurn = getChoice.choice;
-  bool aiTurn = !getChoice.choice;
+  bool oTurn = getChoice.choice; // O
   int pScore = 0;
-  int bScore = 0;
+  int spScore = 0;
   int draws = 0;
   int filledBoxes = 0;
 
@@ -56,9 +54,10 @@ class _PlayPageState extends State<PlayPage> {
       body: Container(
         child: Column(
           children: <Widget>[
+            names,
             avatars,
-            scoreBoard(pScore, bScore, draws),
-            board(move, displayXO),
+            scoreBoard(pScore, spScore, draws),
+            board(tapped, displayXO),
           ],
         ),
       ),
@@ -67,25 +66,17 @@ class _PlayPageState extends State<PlayPage> {
 
   // MAIN FUNCTIONS
   //Tap on the board
-  void move(int index) {
-    var random = Random();
-
+  void tapped(int index) {
     setState(() {
-      if (playerTurn &&
-          (displayXO[index] == '') &&
-          (displayXO[index + random.nextInt(2)] == '')) {
+      if (oTurn && (displayXO[index] == '')) {
         displayXO[index] = 'O';
         filledBoxes += 1;
-        displayXO[index + random.nextInt(2)] = 'X';
-        filledBoxes += 1;
-      } else if (!playerTurn &&
-          (displayXO[index] == '') &&
-          (displayXO[index + random.nextInt(2)] == '')) {
+      } else if (!oTurn && (displayXO[index] == '')) {
         displayXO[index] = 'X';
         filledBoxes += 1;
-        displayXO[index + random.nextInt(2)] = 'O';
-        filledBoxes += 1;
       }
+
+      oTurn = !oTurn;
 
       _checkWinner();
     });
@@ -99,6 +90,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[0] != '') {
       _showWinDialog(displayXO[0]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks 2nd row
@@ -107,6 +99,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[3] != '') {
       _showWinDialog(displayXO[3]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks 3rd row
@@ -115,6 +108,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[6] != '') {
       _showWinDialog(displayXO[6]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks 1st column
@@ -123,6 +117,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[0] != '') {
       _showWinDialog(displayXO[0]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks 2nd column
@@ -131,6 +126,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[1] != '') {
       _showWinDialog(displayXO[1]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks 3rd column
@@ -139,6 +135,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[2] != '') {
       _showWinDialog(displayXO[2]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks diagonal
@@ -147,6 +144,7 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[6] != '') {
       _showWinDialog(displayXO[6]);
       _clearBoard();
+      oTurn = getChoice.choice;
     }
 
     // checks diagonal with Draw
@@ -155,9 +153,11 @@ class _PlayPageState extends State<PlayPage> {
         displayXO[0] != '') {
       _showWinDialog(displayXO[0]);
       _clearBoard();
+      oTurn = getChoice.choice;
     } else if (filledBoxes == 9) {
       _clearBoard();
       _showDrawDialog();
+      oTurn = getChoice.choice;
     }
   }
 
@@ -181,10 +181,14 @@ class _PlayPageState extends State<PlayPage> {
           return alertDialog(context, "WINNER IS: ", winner);
         });
 
-    if (winner == 'O') {
+    if (getChoice.choice == true && winner == "O") {
       pScore += 1;
-    } else if (winner == 'X') {
-      bScore += 1;
+    } else if (getChoice.choice == true && winner == "X") {
+      spScore += 1;
+    } else if (getChoice.choice == false && winner == "X") {
+      pScore += 1;
+    } else if (getChoice.choice == false && winner == "O") {
+      spScore += 1;
     }
   }
 

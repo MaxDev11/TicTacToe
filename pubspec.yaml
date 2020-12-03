@@ -43,7 +43,7 @@ flutter:
   assets:
     - assets/img/Player.png
     - assets/img/Draw.png
-    - assets/img/Bot.png
+    - assets/img/Player2.png
     - assets/img/ColorPalette.png
   fonts:
     - family: Righteous
