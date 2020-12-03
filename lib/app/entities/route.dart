@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/app/start.dart';
 import 'package:tictactoe/app/menu/menu.dart';
 import 'package:tictactoe/app/menu/play/play.dart';
-import 'package:tictactoe/app/menu/play/sections/choose.dart';
-import 'package:tictactoe/app/start.dart';
+import 'package:tictactoe/app/menu/sections/choose.dart';
+import 'package:tictactoe/app/menu/multiplayer/multiplayer.dart';
 
 const String splashRoute = '/',
     menuRoute = '/menu',
     chooseRoute = '/choose',
-    playRoute = '/play';
+    playRoute = '/play',
+    multiplayerRoute = '/multiplayer';
 
 Route generateRoute(RouteSettings route) {
   switch (route.name) {
@@ -19,6 +21,8 @@ Route generateRoute(RouteSettings route) {
       return MaterialPageRoute(builder: (context) => Choose());
     case playRoute:
       return MaterialPageRoute(builder: (context) => PlayPage());
+    case multiplayerRoute:
+      return MaterialPageRoute(builder: (context) => MultiplayerPage());
     default:
       return MaterialPageRoute(
           builder: (_) => Scaffold(

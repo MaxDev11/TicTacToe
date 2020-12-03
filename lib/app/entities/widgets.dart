@@ -49,7 +49,9 @@ Widget multiplayerBtn(BuildContext context) {
       height: 42,
       margin: EdgeInsets.only(top: 40),
       child: FlatButton(
-        onPressed: () => {},
+        onPressed: () {
+          Navigator.pushNamed(context, multiplayerRoute);
+        },
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

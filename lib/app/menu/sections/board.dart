@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 
-Widget board(Function tapped, List<String> displayXO) => Expanded(
+Widget board(Function move, List<String> displayXO) => Expanded(
     child: GridView.builder(
         padding: EdgeInsets.only(top: 30, left: 42, right: 42),
         itemCount: 9,
@@ -14,7 +14,7 @@ Widget board(Function tapped, List<String> displayXO) => Expanded(
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              tapped(index);
+              move(index);
             },
             child: Container(
                 decoration: BoxDecoration(

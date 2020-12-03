@@ -1,7 +1,5 @@
 import 'package:rxdart/rxdart.dart';
 
-class AI {}
-
 class Choice {
   final BehaviorSubject<bool> _choice = BehaviorSubject.seeded(true);
 
