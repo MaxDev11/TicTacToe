@@ -45,6 +45,10 @@ flutter:
     - assets/img/Draw.png
     - assets/img/Player2.png
     - assets/img/ColorPalette.png
+    - assets/img/Player1_settings.png
+    - assets/img/Player2_settings.png
+    - assets/img/RussianFlag.png
+    - assets/img/USAFlag.png
   fonts:
     - family: Righteous
       fonts:

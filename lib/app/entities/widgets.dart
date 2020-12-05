@@ -58,7 +58,7 @@ Widget settingsBtn(BuildContext context) {
       ));
 }
 
-Widget themesBtn(BuildContext context) {
+Widget langBtn(BuildContext context) {
   return Container(
       width: 190,
       height: 42,
@@ -68,7 +68,7 @@ Widget themesBtn(BuildContext context) {
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Text('Themes',
+        child: Text('Languages',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -150,3 +150,36 @@ Widget alertDialog(BuildContext context, String winnerText, String winner) {
     backgroundColor: davysGrey,
   );
 }
+
+// AppBars
+Widget playAB(BuildContext context) => PreferredSize(
+    preferredSize: Size.fromHeight(60.0),
+    child: AppBar(
+      title: Text('Play',
+          style: TextStyle(
+            fontSize: 38,
+            fontWeight: FontWeight.bold,
+          )),
+      centerTitle: true,
+      backgroundColor: davysGrey,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, size: 35),
+        onPressed: () => {Navigator.pushNamed(context, menuRoute)},
+      ),
+    ));
+
+Widget chooseAB(BuildContext context) => PreferredSize(
+    preferredSize: Size.fromHeight(60.0),
+    child: AppBar(
+      title: Text('Choose',
+          style: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          )),
+      centerTitle: true,
+      backgroundColor: davysGrey,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, size: 35),
+        onPressed: () => {Navigator.pop(context)},
+      ),
+    ));

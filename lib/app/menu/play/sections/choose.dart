@@ -7,22 +7,7 @@ class Choose extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: charlestonGreen,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60.0),
-          child: AppBar(
-            title: Text('Choose',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                )),
-            centerTitle: true,
-            backgroundColor: davysGrey,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, size: 35),
-              onPressed: () => {Navigator.pop(context)},
-            ),
-          )),
-      // ignore: missing_required_param
+      appBar: chooseAB(context),
       body: Center(
           child: Container(
               margin: EdgeInsets.only(left: 30, right: 30),

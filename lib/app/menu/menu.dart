@@ -18,7 +18,7 @@ class _MenuPageState extends State<MenuPage> {
             menuTitle,
             playBtn(context),
             settingsBtn(context),
-            themesBtn(context),
+            langBtn(context),
             // Container(
             //     margin: EdgeInsets.only(top: 50),
             //     child: DropdownButton(

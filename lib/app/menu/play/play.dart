@@ -26,7 +26,7 @@ class _PlayPageState extends State<PlayPage> {
     '',
   ];
 
-  bool oTurn = getChoice.choice; // O
+  bool oTurn = getChoice.choice;
   int pScore = 0;
   int spScore = 0;
   int draws = 0;
@@ -35,21 +35,7 @@ class _PlayPageState extends State<PlayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60.0),
-          child: AppBar(
-            title: Text('Play',
-                style: TextStyle(
-                  fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                )),
-            centerTitle: true,
-            backgroundColor: davysGrey,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, size: 35),
-              onPressed: () => {Navigator.pushNamed(context, menuRoute)},
-            ),
-          )),
+      appBar: playAB(context),
       backgroundColor: charlestonGreen,
       body: Container(
         child: Column(
@@ -181,13 +167,11 @@ class _PlayPageState extends State<PlayPage> {
           return alertDialog(context, "WINNER IS: ", winner);
         });
 
-    if (getChoice.choice == true && winner == "O") {
+    if ((getChoice.choice == true && winner == "O") ||
+        (getChoice.choice == false && winner == "X")) {
       pScore += 1;
-    } else if (getChoice.choice == true && winner == "X") {
-      spScore += 1;
-    } else if (getChoice.choice == false && winner == "X") {
-      pScore += 1;
-    } else if (getChoice.choice == false && winner == "O") {
+    } else if ((getChoice.choice == true && winner == "X") ||
+        (getChoice.choice == false && winner == "O")) {
       spScore += 1;
     }
   }

@@ -5,7 +5,6 @@ import 'package:tictactoe/app/entities/route.dart';
 import 'package:tictactoe/app/entities/classes.dart';
 
 GetIt getIt = GetIt.asNewInstance();
-
 final getChoice = getIt.get<Choice>();
 
 void main() {
