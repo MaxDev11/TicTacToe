@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
-import 'package:tictactoe/app/entities/route.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/app/menu/play/sections/avatars.dart';
 import 'package:tictactoe/app/menu/play/sections/board.dart';

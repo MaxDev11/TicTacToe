@@ -32,9 +32,7 @@ Widget playBtn(BuildContext context) {
       height: 42,
       margin: EdgeInsets.only(top: 50),
       child: FlatButton(
-        onPressed: () {
-          Navigator.pushNamed(context, chooseRoute);
-        },
+        onPressed: () => {Navigator.pushNamed(context, chooseRoute)},
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -49,7 +47,7 @@ Widget settingsBtn(BuildContext context) {
       height: 42,
       margin: EdgeInsets.only(top: 40),
       child: FlatButton(
-        onPressed: () => {},
+        onPressed: () => {Navigator.pushNamed(context, settingsRoute)},
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -181,5 +179,21 @@ Widget chooseAB(BuildContext context) => PreferredSize(
       leading: IconButton(
         icon: Icon(Icons.arrow_back, size: 35),
         onPressed: () => {Navigator.pop(context)},
+      ),
+    ));
+
+Widget settingsAB(BuildContext context) => PreferredSize(
+    preferredSize: Size.fromHeight(60.0),
+    child: AppBar(
+      title: Text('Settings',
+          style: TextStyle(
+            fontSize: 38,
+            fontWeight: FontWeight.bold,
+          )),
+      centerTitle: true,
+      backgroundColor: davysGrey,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, size: 35),
+        onPressed: () => {Navigator.pushNamed(context, menuRoute)},
       ),
     ));
