@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/app/menu/play/sections/avatars.dart';
@@ -30,23 +32,27 @@ class _PlayPageState extends State<PlayPage> {
   int spScore = 0;
   int draws = 0;
   int filledBoxes = 0;
+  var playerInfoBox = Hive.box('playerInfoBox');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: playAB(context),
-      backgroundColor: charlestonGreen,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            names,
-            avatars,
-            scoreBoard(pScore, spScore, draws),
-            board(tapped, displayXO),
-          ],
-        ),
-      ),
-    );
+        appBar: playAB(context),
+        backgroundColor: charlestonGreen,
+        body: Container(
+          child: ValueListenableBuilder(
+              valueListenable: Hive.box('playerInfoBox').listenable(),
+              builder: (context, playerInfoBox, widget) {
+                return Column(
+                  children: <Widget>[
+                    names,
+                    avatars,
+                    scoreBoard(pScore, spScore, draws),
+                    board(tapped, displayXO),
+                  ],
+                );
+              }),
+        ));
   }
 
   // MAIN FUNCTIONS

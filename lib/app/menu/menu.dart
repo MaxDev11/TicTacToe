@@ -19,15 +19,6 @@ class _MenuPageState extends State<MenuPage> {
             playBtn(context),
             settingsBtn(context),
             langBtn(context),
-            // Container(
-            //     margin: EdgeInsets.only(top: 50),
-            //     child: DropdownButton(
-            //       icon: Image.asset('img/ColorPalette.png'),
-            //       value: () => {},
-            //       items: [],
-            //       onChanged: changed,
-            //     )
-            // ),
           ],
         ),
       ),
