@@ -209,36 +209,34 @@ Widget settingsText(String s, double size, double margin) => Container(
           )),
     );
 
-Widget settingsTextField(Function setstate, String s, String hintText) =>
-    Container(
-        width: 155,
-        height: 40,
-        child: TextFormField(
-          enabled: false,
-          style: TextStyle(
-            color: Colors.white70,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(
-              color: Colors.white70,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-            border: new OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(30.0))),
-            fillColor: davysGrey,
-            filled: true,
-            contentPadding:
-                new EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-          ),
-          keyboardType: TextInputType.number,
-          obscureText: false,
-          onChanged: (String str) {
-            setstate(() {
-              s = str;
-            });
-          },
-        ));
+Widget settingsTextField(Function setstate, String s) => Container(
+    width: 155,
+    height: 40,
+    child: TextFormField(
+      enabled: false,
+      style: TextStyle(
+        color: Colors.white70,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      decoration: InputDecoration(
+        hintText: s,
+        hintStyle: TextStyle(
+          color: Colors.white70,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        border: new OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(30.0))),
+        fillColor: davysGrey,
+        filled: true,
+        contentPadding: new EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+      ),
+      keyboardType: TextInputType.number,
+      obscureText: false,
+      onChanged: (dynamic str) {
+        setstate(() {
+          s = str;
+        });
+      },
+    ));

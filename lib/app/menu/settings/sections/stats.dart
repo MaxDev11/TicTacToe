@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-Widget statsBoard(int pScore, int spScore, int draws) => Column(children: [
+Widget statsBoard(String wins, String loses, String draws) => Column(children: [
       Container(
           child: Row(
         children: [
-          playerScore(pScore),
+          playerScoreWin(wins),
           drawScore(draws),
-          secondPlayerScore(spScore),
+          playerScoreLose(loses),
         ],
       )),
     ]);
 
-Widget playerScore(int pScore) => Container(
+Widget playerScoreWin(String wins) => Container(
     margin: EdgeInsets.only(right: 10),
     child: Column(
       children: <Widget>[
@@ -20,7 +20,7 @@ Widget playerScore(int pScore) => Container(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
-        Text('$pScore',
+        Text('$wins',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -28,7 +28,7 @@ Widget playerScore(int pScore) => Container(
       ],
     ));
 
-Widget drawScore(int draws) => Container(
+Widget drawScore(String draws) => Container(
     margin: EdgeInsets.only(right: 10),
     child: Column(
       children: <Widget>[
@@ -45,16 +45,16 @@ Widget drawScore(int draws) => Container(
       ],
     ));
 
-Widget secondPlayerScore(spScore) => Container(
+Widget playerScoreLose(String loses) => Container(
     margin: EdgeInsets.only(right: 10),
     child: Column(
       children: <Widget>[
-        Text('Wins',
+        Text('loses',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
-        Text('$spScore',
+        Text('$loses',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tictactoe/app/entities/colors.dart';
+import 'package:tictactoe/app/entities/database.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/app/menu/play/sections/avatars.dart';
 import 'package:tictactoe/app/menu/play/sections/board.dart';
@@ -27,32 +26,46 @@ class _PlayPageState extends State<PlayPage> {
     '',
   ];
 
+  Future _userFuture;
   bool oTurn = getChoice.choice;
   int pScore = 0;
   int spScore = 0;
   int draws = 0;
   int filledBoxes = 0;
-  var playerInfoBox = Hive.box('playerInfoBox');
+
+  @override
+  initState() {
+    super.initState();
+    _userFuture = DBProvider.db.getUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: playAB(context),
         backgroundColor: charlestonGreen,
-        body: Container(
-          child: ValueListenableBuilder(
-              valueListenable: Hive.box('playerInfoBox').listenable(),
-              builder: (context, playerInfoBox, widget) {
-                return Column(
+        body: FutureBuilder(
+            future: _userFuture,
+            builder: (_, userData) {
+              switch (userData.connectionState) {
+                case ConnectionState.none:
+                  return Container();
+                case ConnectionState.waiting:
+                  return Container();
+                case ConnectionState.active:
+                case ConnectionState.done:
+              }
+              return Container(
+                child: Column(
                   children: <Widget>[
-                    names,
+                    names(user1.name, user2.name),
                     avatars,
-                    scoreBoard(pScore, spScore, draws),
+                    scoreBoard(user1.wins, user2.wins, user1.draws),
                     board(tapped, displayXO),
                   ],
-                );
-              }),
-        ));
+                ),
+              );
+            }));
   }
 
   // MAIN FUNCTIONS
@@ -161,6 +174,10 @@ class _PlayPageState extends State<PlayPage> {
           return alertDialog(context, "DR", "AW");
         });
     draws += 1;
+    user1.draws = draws.toString();
+    user2.draws = draws.toString();
+    DBProvider.db.update(user1);
+    DBProvider.db.update(user2);
   }
 
   // Show Win Dialog
@@ -175,9 +192,17 @@ class _PlayPageState extends State<PlayPage> {
     if ((getChoice.choice == true && winner == "O") ||
         (getChoice.choice == false && winner == "X")) {
       pScore += 1;
+      user1.wins = pScore.toString();
+      user2.loses = pScore.toString();
+      DBProvider.db.update(user1);
+      DBProvider.db.update(user2);
     } else if ((getChoice.choice == true && winner == "X") ||
         (getChoice.choice == false && winner == "O")) {
       spScore += 1;
+      user2.wins = spScore.toString();
+      user1.loses = spScore.toString();
+      DBProvider.db.update(user1);
+      DBProvider.db.update(user2);
     }
   }
 

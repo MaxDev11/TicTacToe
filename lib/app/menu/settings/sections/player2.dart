@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
+import 'package:tictactoe/app/entities/database.dart';
+import 'package:tictactoe/main.dart';
 
 Widget playerTwoInfo(
         Function text, Function buildNameField, Function buildRankField) =>
@@ -31,7 +33,7 @@ Widget playerTwoStats(Function stats, Function text) => Row(children: [
         children: [
           Container(
             margin: EdgeInsets.only(top: 20),
-            child: stats(0, 0, 0),
+            child: stats(user2.wins, user2.loses, user2.draws),
           ),
         ],
       ),
@@ -39,7 +41,12 @@ Widget playerTwoStats(Function stats, Function text) => Row(children: [
           width: 80,
           height: 25,
           child: FlatButton(
-            onPressed: () => {},
+            onPressed: () => {
+              user2.wins = "0",
+              user2.draws = "0",
+              user2.loses = "0",
+              DBProvider.db.update(user2),
+            },
             color: davysGrey,
             textColor: Colors.white,
             shape:

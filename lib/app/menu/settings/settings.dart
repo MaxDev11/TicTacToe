@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
+import 'package:tictactoe/app/entities/database.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/app/menu/settings/sections/player1.dart';
 import 'package:tictactoe/app/menu/settings/sections/player2.dart';
 import 'package:tictactoe/app/menu/settings/sections/stats.dart';
+import 'package:tictactoe/main.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -11,47 +13,60 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _namePl1;
-  String _namePl2;
-  String _rankPl1;
-  String _rankPl2;
+  Future _userFuture;
+
+  @override
+  initState() {
+    super.initState();
+    _userFuture = getUsers();
+  }
+
+  getUsers() async {
+    final _userData = await DBProvider.db.getUsers();
+    return _userData;
+  }
 
   Widget _buildNamePl1Field() {
-    return settingsTextField(setState, _namePl1, "Player 1");
+    return settingsTextField(setState, user1.name);
   }
 
   Widget _buildNamePl2Field() {
-    return settingsTextField(setState, _namePl2, "Player 2");
+    return settingsTextField(setState, user2.name);
   }
 
   Widget _buildRankPl1Field() {
-    return settingsTextField(setState, _rankPl1, "0000");
+    return settingsTextField(setState, user1.rank);
   }
 
   Widget _buildRankPl2Field() {
-    return settingsTextField(setState, _rankPl2, "0000");
+    return settingsTextField(setState, user2.rank);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingsAB(context),
-      backgroundColor: charlestonGreen,
-      body: Container(
-        margin: EdgeInsets.only(left: 25, right: 25, top: 30, bottom: 20),
-        child: Column(
-          children: <Widget>[
-            playerOneInfo(settingsText, _buildNamePl1Field, _buildRankPl1Field),
-            playerOneStats(statsBoard, settingsText),
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              child: playerTwoInfo(
-                  settingsText, _buildNamePl2Field, _buildRankPl2Field),
-            ),
-            playerTwoStats(statsBoard, settingsText),
-          ],
-        ),
-      ),
-    );
+        appBar: settingsAB(context),
+        backgroundColor: charlestonGreen,
+        body: FutureBuilder(
+            future: _userFuture,
+            builder: (_, userData) {
+              return Container(
+                margin:
+                    EdgeInsets.only(left: 25, right: 25, top: 30, bottom: 20),
+                child: Column(
+                  children: <Widget>[
+                    playerOneInfo(
+                        settingsText, _buildNamePl1Field, _buildRankPl1Field),
+                    playerOneStats(statsBoard, settingsText),
+                    Container(
+                      margin: EdgeInsets.only(top: 25),
+                      child: playerTwoInfo(
+                          settingsText, _buildNamePl2Field, _buildRankPl2Field),
+                    ),
+                    playerTwoStats(statsBoard, settingsText),
+                  ],
+                ),
+              );
+            }));
   }
 }
