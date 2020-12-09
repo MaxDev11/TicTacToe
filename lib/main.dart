@@ -1,3 +1,5 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +54,8 @@ class _MyAppState extends State<MyApp> {
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
       title: 'TicTacToe',
       theme: ThemeData(

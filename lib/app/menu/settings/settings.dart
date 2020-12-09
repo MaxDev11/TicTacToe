@@ -55,13 +55,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     EdgeInsets.only(left: 25, right: 25, top: 30, bottom: 20),
                 child: Column(
                   children: <Widget>[
-                    playerOneInfo(
-                        settingsText, _buildNamePl1Field, _buildRankPl1Field),
+                    playerOneInfo(settingsText, _buildNamePl1Field,
+                        _buildRankPl1Field, context),
                     playerOneStats(statsBoard, settingsText, context),
                     Container(
                       margin: EdgeInsets.only(top: 25),
-                      child: playerTwoInfo(
-                          settingsText, _buildNamePl2Field, _buildRankPl2Field),
+                      child: playerTwoInfo(settingsText, _buildNamePl2Field,
+                          _buildRankPl2Field, context),
                     ),
                     playerTwoStats(statsBoard, settingsText, context),
                   ],

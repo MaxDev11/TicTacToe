@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/widgets.dart';
+import 'package:tictactoe/app_localizations.dart';
 
 class LanguagePage extends StatefulWidget {
   @override
@@ -52,7 +53,10 @@ class _LanguagePageState extends State<LanguagePage> {
                         null),
                     Center(
                         child: languageText(
-                            'Language changes automatically!', 15.0, 10.0)),
+                            AppLocalizations.of(context)
+                                .translate('languageText'),
+                            15.0,
+                            10.0)),
                   ],
                 ),
               );

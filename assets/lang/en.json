@@ -6,7 +6,7 @@
     "playTitle": "Play",
     "winsText": "Wins",
     "drawsText": "Draws",
-    "winnerDialog": "WINNER IS:",
+    "winnerDialog": "WINNER IS: ",
     "winnerDialogMenu": "Menu",
     "winnerDialogAgain": "Again?",
     "drawDialog": "DRAW",
@@ -19,5 +19,6 @@
     "settingsBtnClear": "Clear",
     "settingsBtnBack": "Back",
     "settingsDialogClear": "Data cleared!",
-    "languagesTitle": "Language"
+    "languagesTitle": "Language",
+    "languageText": "Language changes automatically!"
 }

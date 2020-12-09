@@ -5,8 +5,8 @@ import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/main.dart';
 import 'package:tictactoe/app_localizations.dart';
 
-Widget playerOneInfo(
-        Function text, Function buildNameField, Function buildRankField) =>
+Widget playerOneInfo(Function text, Function buildNameField,
+        Function buildRankField, BuildContext context) =>
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -20,9 +20,11 @@ Widget playerOneInfo(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            text("Name", 24.0, 8.0),
+            text(AppLocalizations.of(context).translate('settingsPlName'), 24.0,
+                8.0),
             buildNameField(),
-            text("Rank", 24.0, 8.0),
+            text(AppLocalizations.of(context).translate('settingsPlRank'), 24.0,
+                8.0),
             buildRankField(),
           ],
         )),
