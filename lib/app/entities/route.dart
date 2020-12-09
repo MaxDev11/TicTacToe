@@ -4,12 +4,14 @@ import 'package:tictactoe/app/menu/menu.dart';
 import 'package:tictactoe/app/menu/play/play.dart';
 import 'package:tictactoe/app/menu/play/sections/choose.dart';
 import 'package:tictactoe/app/menu/settings/settings.dart';
+import 'package:tictactoe/app/menu/languages/lang.dart';
 
 const String splashRoute = '/',
     menuRoute = '/menu',
     chooseRoute = '/choose',
     playRoute = '/play',
-    settingsRoute = '/settings';
+    settingsRoute = '/settings',
+    languageRoute = '/language';
 
 Route generateRoute(RouteSettings route) {
   switch (route.name) {
@@ -23,6 +25,8 @@ Route generateRoute(RouteSettings route) {
       return MaterialPageRoute(builder: (context) => PlayPage());
     case settingsRoute:
       return MaterialPageRoute(builder: (context) => SettingsPage());
+    case languageRoute:
+      return MaterialPageRoute(builder: (context) => LanguagePage());
     default:
       return MaterialPageRoute(
           builder: (_) => Scaffold(

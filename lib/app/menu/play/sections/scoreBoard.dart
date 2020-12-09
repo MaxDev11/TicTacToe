@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/app_localizations.dart';
 
-Widget scoreBoard(String wins, String wins2, String draws) => Column(children: [
+Widget scoreBoard(
+        String wins, String wins2, String draws, BuildContext context) =>
+    Column(children: [
       Container(
           margin: EdgeInsets.only(top: 10, left: 63, right: 62),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              playerScore(wins),
-              drawScore(draws),
-              secondPlayerScore(wins2),
+              playerScore(wins, context),
+              drawScore(draws, context),
+              secondPlayerScore(wins2, context),
             ],
           )),
     ]);
 
-Widget playerScore(String wins) => Column(
+Widget playerScore(String wins, BuildContext context) => Column(
       children: <Widget>[
-        Text('Wins',
+        Text(AppLocalizations.of(context).translate('winsText'),
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -28,9 +31,9 @@ Widget playerScore(String wins) => Column(
       ],
     );
 
-Widget drawScore(String draws) => Column(
+Widget drawScore(String draws, BuildContext context) => Column(
       children: <Widget>[
-        Text('Draws',
+        Text(AppLocalizations.of(context).translate('drawsText'),
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -43,9 +46,9 @@ Widget drawScore(String draws) => Column(
       ],
     );
 
-Widget secondPlayerScore(String wins2) => Column(
+Widget secondPlayerScore(String wins2, BuildContext context) => Column(
       children: <Widget>[
-        Text('Wins',
+        Text(AppLocalizations.of(context).translate('winsText'),
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,

@@ -7,6 +7,7 @@ import 'package:tictactoe/app/menu/play/sections/board.dart';
 import 'package:tictactoe/app/menu/play/sections/names.dart';
 import 'package:tictactoe/app/menu/play/sections/scoreBoard.dart';
 import 'package:tictactoe/main.dart';
+import 'package:tictactoe/app_localizations.dart';
 
 class PlayPage extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class _PlayPageState extends State<PlayPage> {
                   children: <Widget>[
                     names(user1.name, user2.name),
                     avatars,
-                    scoreBoard(user1.wins, user2.wins, user1.draws),
+                    scoreBoard(user1.wins, user2.wins, user1.draws, context),
                     board(tapped, displayXO),
                   ],
                 ),
@@ -171,7 +172,8 @@ class _PlayPageState extends State<PlayPage> {
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return alertDialog(context, "DR", "AW");
+          return alertDialog(context,
+              AppLocalizations.of(context).translate('drawDialog'), "");
         });
     draws += 1;
     user1.draws = draws.toString();
@@ -186,7 +188,8 @@ class _PlayPageState extends State<PlayPage> {
         barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return alertDialog(context, "WINNER IS: ", winner);
+          return alertDialog(context,
+              AppLocalizations.of(context).translate('winnerDialog'), winner);
         });
 
     if ((getChoice.choice == true && winner == "O") ||

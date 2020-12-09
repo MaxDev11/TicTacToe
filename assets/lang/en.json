@@ -1,0 +1,23 @@
+{
+    "playBtn": "Play",
+    "settingsBtn": "Settings",
+    "languagesBtn": "Languages",
+    "chooseTitle": "Choose",
+    "playTitle": "Play",
+    "winsText": "Wins",
+    "drawsText": "Draws",
+    "winnerDialog": "WINNER IS:",
+    "winnerDialogMenu": "Menu",
+    "winnerDialogAgain": "Again?",
+    "drawDialog": "DRAW",
+    "settingsTitle": "Settings",
+    "settingsPlName": "Name",
+    "settingsPlRank": "Rank",
+    "settingsWinsText": "Wins",
+    "settingsDrawsText": "Draws",
+    "settingsLosesText": "Loses",
+    "settingsBtnClear": "Clear",
+    "settingsBtnBack": "Back",
+    "settingsDialogClear": "Data cleared!",
+    "languagesTitle": "Language"
+}

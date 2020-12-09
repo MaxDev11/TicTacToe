@@ -1,3 +1,4 @@
+import 'app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
@@ -9,7 +10,6 @@ import 'app/entities/database.dart';
 
 GetIt getIt = GetIt.asNewInstance();
 final getChoice = getIt.get<Choice>();
-
 User user1 = User(
   name: 'player1',
   rank: '0000',
@@ -17,6 +17,7 @@ User user1 = User(
   draws: '0',
   loses: '0',
 );
+
 User user2 = User(
   name: 'player2',
   rank: '0000',
@@ -30,10 +31,8 @@ void main() {
 
   getIt.registerSingleton<Choice>(Choice());
 
-  if (DBProvider.db.getUsers() == null) {
-    DBProvider.db.insert(user1);
-    DBProvider.db.insert(user2);
-  }
+  DBProvider.db.insert(user1);
+  DBProvider.db.insert(user2);
 
   runApp(MyApp());
 }
@@ -47,6 +46,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('ru', 'RU'),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+      ],
       title: 'TicTacToe',
       theme: ThemeData(
         fontFamily: 'Righteous',

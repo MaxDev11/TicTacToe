@@ -73,8 +73,8 @@ class DBProvider {
   }
 
   Future<User> insert(User user) async {
-    print("Data inserted in the Database!");
     final db = await database;
+    print("Data inserted in the Database!");
     user.id = await db.insert(_tableName, user.toMap());
 
     return user;

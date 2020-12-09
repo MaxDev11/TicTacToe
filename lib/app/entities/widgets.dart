@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/route.dart';
 import 'package:tictactoe/main.dart';
+import 'package:tictactoe/app_localizations.dart';
 
 //Splash Screen
 Widget get splashIcon => Container(
@@ -36,7 +37,7 @@ Widget playBtn(BuildContext context) {
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Text('Play',
+        child: Text(AppLocalizations.of(context).translate('playBtn'),
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -51,7 +52,7 @@ Widget settingsBtn(BuildContext context) {
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Text('Settings',
+        child: Text(AppLocalizations.of(context).translate('settingsBtn'),
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -62,11 +63,11 @@ Widget langBtn(BuildContext context) {
       height: 42,
       margin: EdgeInsets.only(top: 40),
       child: FlatButton(
-        onPressed: () => {},
+        onPressed: () => {Navigator.pushNamed(context, languageRoute)},
         color: davysGrey,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Text('Languages',
+        child: Text(AppLocalizations.of(context).translate('languagesBtn'),
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ));
 }
@@ -129,7 +130,7 @@ Widget alertDialog(BuildContext context, String winnerText, String winner) {
     actions: <Widget>[
       FlatButton(
         child: Text(
-          'Menu',
+          AppLocalizations.of(context).translate('winnerDialogMenu'),
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
@@ -138,7 +139,7 @@ Widget alertDialog(BuildContext context, String winnerText, String winner) {
       ),
       FlatButton(
           child: Text(
-            'Again?',
+            AppLocalizations.of(context).translate('winnerDialogAgain'),
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () {
@@ -153,7 +154,7 @@ Widget alertDialog(BuildContext context, String winnerText, String winner) {
 Widget playAB(BuildContext context) => PreferredSize(
     preferredSize: Size.fromHeight(60.0),
     child: AppBar(
-      title: Text('Play',
+      title: Text(AppLocalizations.of(context).translate('playTitle'),
           style: TextStyle(
             fontSize: 38,
             fontWeight: FontWeight.bold,
@@ -169,7 +170,7 @@ Widget playAB(BuildContext context) => PreferredSize(
 Widget chooseAB(BuildContext context) => PreferredSize(
     preferredSize: Size.fromHeight(60.0),
     child: AppBar(
-      title: Text('Choose',
+      title: Text(AppLocalizations.of(context).translate('chooseTitle'),
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
@@ -185,7 +186,23 @@ Widget chooseAB(BuildContext context) => PreferredSize(
 Widget settingsAB(BuildContext context) => PreferredSize(
     preferredSize: Size.fromHeight(60.0),
     child: AppBar(
-      title: Text('Settings',
+      title: Text(AppLocalizations.of(context).translate('settingsTitle'),
+          style: TextStyle(
+            fontSize: 38,
+            fontWeight: FontWeight.bold,
+          )),
+      centerTitle: true,
+      backgroundColor: davysGrey,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, size: 35),
+        onPressed: () => {Navigator.pushNamed(context, menuRoute)},
+      ),
+    ));
+
+Widget langAB(BuildContext context) => PreferredSize(
+    preferredSize: Size.fromHeight(60.0),
+    child: AppBar(
+      title: Text(AppLocalizations.of(context).translate('languagesTitle'),
           style: TextStyle(
             fontSize: 38,
             fontWeight: FontWeight.bold,
@@ -240,3 +257,64 @@ Widget settingsTextField(Function setstate, String s) => Container(
         });
       },
     ));
+
+Widget alertDialogSet(BuildContext context, String text) {
+  return AlertDialog(
+    title: Text(
+      text,
+      style: TextStyle(color: Colors.white),
+    ),
+    actions: <Widget>[
+      FlatButton(
+        child: Text(
+          AppLocalizations.of(context).translate('settingsBtnBack'),
+          style: TextStyle(color: Colors.white),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, menuRoute);
+        },
+      ),
+    ],
+    backgroundColor: davysGrey,
+  );
+}
+
+// Languages section
+
+Widget languagesRow(
+  String firstLang,
+  String secondLang,
+  String thirdLang,
+  Function flFunc,
+  Function slFunc,
+  Function tlFunc,
+) =>
+    Row(
+      children: [
+        FlatButton(
+          padding: EdgeInsets.only(left: 25, bottom: 15),
+          onPressed: null,
+          child: Image.asset(firstLang),
+        ),
+        FlatButton(
+          padding: EdgeInsets.only(left: 20, right: 20, bottom: 15),
+          onPressed: null,
+          child: Image.asset(secondLang),
+        ),
+        FlatButton(
+          padding: EdgeInsets.only(right: 25, bottom: 15),
+          onPressed: null,
+          child: Image.asset(thirdLang),
+        ),
+      ],
+    );
+
+Widget languageText(String s, double size, double margin) => Container(
+      margin: EdgeInsets.all(margin),
+      child: Text(s,
+          style: TextStyle(
+            color: Colors.white70,
+            fontSize: size,
+            fontWeight: FontWeight.bold,
+          )),
+    );

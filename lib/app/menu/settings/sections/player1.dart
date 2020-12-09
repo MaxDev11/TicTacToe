@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/app/entities/colors.dart';
 import 'package:tictactoe/app/entities/database.dart';
+import 'package:tictactoe/app/entities/widgets.dart';
 import 'package:tictactoe/main.dart';
+import 'package:tictactoe/app_localizations.dart';
 
 Widget playerOneInfo(
         Function text, Function buildNameField, Function buildRankField) =>
@@ -27,13 +29,14 @@ Widget playerOneInfo(
       ],
     );
 
-Widget playerOneStats(Function stats, Function text) => Row(children: [
+Widget playerOneStats(Function stats, Function text, BuildContext context) =>
+    Row(children: [
       Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             margin: EdgeInsets.only(top: 20),
-            child: stats(user1.wins, user1.loses, user1.draws),
+            child: stats(user1.wins, user1.loses, user1.draws, context),
           ),
         ],
       ),
@@ -46,11 +49,24 @@ Widget playerOneStats(Function stats, Function text) => Row(children: [
               user1.draws = "0",
               user1.loses = "0",
               DBProvider.db.update(user1),
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return alertDialogSet(
+                      context,
+                      AppLocalizations.of(context)
+                          .translate('settingsDialogClear'),
+                    );
+                  }),
             },
             color: davysGrey,
             textColor: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: text("Clear", 18.0, 0.0),
+            child: text(
+                AppLocalizations.of(context).translate('settingsBtnClear'),
+                18.0,
+                0.0),
           )),
     ]);

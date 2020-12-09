@@ -57,13 +57,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: <Widget>[
                     playerOneInfo(
                         settingsText, _buildNamePl1Field, _buildRankPl1Field),
-                    playerOneStats(statsBoard, settingsText),
+                    playerOneStats(statsBoard, settingsText, context),
                     Container(
                       margin: EdgeInsets.only(top: 25),
                       child: playerTwoInfo(
                           settingsText, _buildNamePl2Field, _buildRankPl2Field),
                     ),
-                    playerTwoStats(statsBoard, settingsText),
+                    playerTwoStats(statsBoard, settingsText, context),
                   ],
                 ),
               );
